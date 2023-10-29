@@ -17,7 +17,10 @@
     git
     htop
     pavucontrol
+    # fonts
+    fontconfig
     dejavu_fonts
+    (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
     firefox
     # for sway
     kitty
@@ -76,6 +79,9 @@
   programs.kitty = {
     enable = true;
     shellIntegration.enableBashIntegration = true;
+    font = {
+      name = "FiraCode";
+    };
     extraConfig = ''
       confirm_os_window_close -1
     '';
