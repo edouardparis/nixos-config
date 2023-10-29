@@ -95,6 +95,10 @@
     signing = {
       key = "5B63F3B97699C7EEF3B040B19B7F629A53E77B83";
     };
+    aliases = {
+      s = "status";
+      co = "checkout";
+    };
   };
 
   programs.firefox = {
