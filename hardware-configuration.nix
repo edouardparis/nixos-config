@@ -48,6 +48,4 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.ledger.enable = true;
-  hardware.digitalbitbox.enable = true;
 }

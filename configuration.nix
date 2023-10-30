@@ -88,7 +88,15 @@
 
   services.udev.packages = with pkgs; [
     yubikey-personalization
+    ledger-udev-rules
   ];
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="bitbox02_%%n", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="bitbox02_%%n"
+    SUBSYSTEM=="usb", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="dbb%%n", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="dbb%%n"
+  '';
 
   # used for gpg key ssh connection
   environment.shellInit = ''
