@@ -30,6 +30,9 @@
     mako
     wofi
     waybar
+
+    # programming
+    rustup
   ];
 
   home.sessionVariables = {
@@ -91,6 +94,10 @@
     enable = true;
     shellAliases = {
       nvim = "nix run github:edouardparis/neovim-flake";
+      gs = "git status";
+      gco = "git checkout";
+      gcam = "git commit -a -m";
+      gacam = "git add . & git commit -a -m";
     };
   };
 
@@ -100,10 +107,6 @@
     userEmail = "m@edouard.paris";
     signing = {
       key = "5B63F3B97699C7EEF3B040B19B7F629A53E77B83";
-    };
-    aliases = {
-      s = "status";
-      co = "checkout";
     };
   };
 
@@ -115,6 +118,9 @@
       search = {
         force = true;
         default = "DuckDuckGo";
+      };
+      settings = {
+        "browser.tabs.warnOnCloseOtherTabs" = false;
       };
       userChrome = ''
            #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
