@@ -11,6 +11,8 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    wget
+    curl
     pass
     ripgrep
     fzf
@@ -52,8 +54,6 @@
     # needs qt5.qtwayland in systemPackages
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    #iced
-    LD_LIBRARY_PATH = builtins.foldl' (a: b: "${a}:${b}/lib") "${pkgs.vulkan-loader}/lib" buildInputs;
   };
 
   wayland.windowManager.sway = {
