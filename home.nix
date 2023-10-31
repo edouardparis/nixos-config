@@ -11,19 +11,24 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    git
+    starship
     wget
     curl
     pass
+    # utils
     ripgrep
     fzf
-    git
+    zoxide
     htop
     pavucontrol
     # fonts
     fontconfig
     dejavu_fonts
     (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
+    # browsers
     firefox
+    google-chrome
     # for sway
     kitty
     swaylock
@@ -32,6 +37,8 @@
     mako
     wofi
     waybar
+    grim
+    slurp
 
     #build-essentials
     gcc
@@ -41,6 +48,7 @@
     # programming
     fontconfig
     cmake
+    python3
     rustup
   ];
 
@@ -105,10 +113,15 @@
       nvim = "nix run github:edouardparis/neovim-flake";
       gs = "git status";
       gco = "git checkout";
+      gcb = "git checkout -b";
       gcam = "git commit -a -m";
       gacam = "git add . & git commit -a -m";
     };
   };
+
+  programs.starship.enable = true;
+  programs.zoxide.enable = true;
+  programs.fzf.enable = true;
 
   programs.git = {
     enable = true;
