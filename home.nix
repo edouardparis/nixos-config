@@ -12,12 +12,13 @@
 
   home.packages = with pkgs; [
     git
-    starship
+    vim
     wget
     curl
     pass
     # utils
     ripgrep
+    starship
     fzf
     zoxide
     htop
@@ -129,6 +130,9 @@
     userEmail = "m@edouard.paris";
     signing = {
       key = "5B63F3B97699C7EEF3B040B19B7F629A53E77B83";
+    };
+    extraConfig = {
+      core.editor = "vim";
     };
   };
 
