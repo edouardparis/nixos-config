@@ -53,11 +53,14 @@
   services.pcscd.enable = true;
   # services.pipewire.enable = true;
 
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edouard = {
     isNormalUser = true;
     description = "Edouard";
-    extraGroups = ["networkmanager" "wheel" "audio" "video"];
+    extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers"];
     packages = with pkgs; [];
   };
 
@@ -92,10 +95,8 @@
   ];
 
   services.udev.extraRules = ''
-    SUBSYSTEM=="usb", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="bitbox02_%%n", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403"
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="bitbox02_%%n"
-    SUBSYSTEM=="usb", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="dbb%%n", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402"
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="dbb%%n"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403, TAG+="uaccess", TAG+="udev-acl", GROUP="wheel"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess", TAG+="udev-acl", GROUP="wheel"
   '';
 
   # used for gpg key ssh connection
