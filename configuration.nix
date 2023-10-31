@@ -44,12 +44,6 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
   services.pcscd.enable = true;
   # services.pipewire.enable = true;
 
