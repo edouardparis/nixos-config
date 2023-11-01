@@ -113,7 +113,7 @@
     shellAliases = {
       nvim = "nix run github:edouardparis/neovim-flake";
       gs = "git status";
-      gco = "git checkout";
+      gco = "git checkout $(git for-each-ref refs/heads/ --format='%(refname:short)' | fzf)";
       gcb = "git checkout -b";
       gcam = "git commit -a -m";
       gacam = "git add . & git commit -a -m";
