@@ -41,12 +41,17 @@
     grim
     slurp
 
+    #
+    tmux
+
     #build-essentials
     gcc
     glibc
     binutils
 
     # programming
+    pkg-config
+    openssl
     fontconfig
     cmake
     python3
@@ -118,6 +123,22 @@
       gcam = "git commit -a -m";
       gacam = "git add . & git commit -a -m";
     };
+  };
+
+  programs.tmux = {
+    enable = true;
+    extraConfig = ''
+      unbind C-b
+      set-option -g prefix C-a
+      bind-key C-a send-prefix
+
+      set -g mouse on
+
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+    '';
   };
 
   programs.starship.enable = true;
