@@ -30,7 +30,9 @@
     # browsers
     firefox
     google-chrome
+
     # for sway
+    gnome.nautilus
     kitty
     swaylock
     swayidle
@@ -99,6 +101,10 @@
         hostname = "github.com";
         identityFile = "~/.ssh/id_rsa_yubikey.pub";
       };
+      clevercloud = {
+        hostname = "*.clever-cloud.com";
+        identityFile = "~/.ssh/id_rsa_yubikey.pub";
+      };
     };
   };
 
@@ -122,6 +128,9 @@
       gcb = "git checkout -b";
       gcam = "git commit -a -m";
       gacam = "git add . & git commit -a -m";
+    };
+    sessionVariables = {
+      PATH = "$HOME/.cargo/bin:$PATH";
     };
   };
 

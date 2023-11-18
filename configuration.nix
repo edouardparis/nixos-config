@@ -45,6 +45,7 @@
   };
 
   services.pcscd.enable = true;
+  services.gvfs.enable = true;
   # services.pipewire.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
@@ -91,6 +92,7 @@
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403, TAG+="uaccess", TAG+="udev-acl", GROUP="wheel"
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess", TAG+="udev-acl", GROUP="wheel"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="d13e", ATTRS{idProduct}=="cc10", GROUP="wheel", MODE="0666"
   '';
 
   # used for gpg key ssh connection
