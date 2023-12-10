@@ -17,6 +17,7 @@
     curl
     pass
     # utils
+    jq
     ripgrep
     starship
     fzf
@@ -128,10 +129,19 @@
       gcb = "git checkout -b";
       gcam = "git commit -a -m";
       gacam = "git add . & git commit -a -m";
+      passp = "PASSWORD_STORE_DIR=~/.password-personal pass";
     };
     sessionVariables = {
       PATH = "$HOME/.cargo/bin:$PATH";
     };
+    initExtra = ''
+      . /etc/profiles/per-user/edouard/share/bash-completion/completions/pass
+      _passp() {
+        # trailing / is required for the password-store dir.
+        PASSWORD_STORE_DIR=~/.password-personal _pass
+      }
+      complete -o filenames -F _passp passp
+    '';
   };
 
   programs.tmux = {
