@@ -25,7 +25,6 @@
     htop
     pavucontrol
     # fonts
-    fontconfig
     dejavu_fonts
     (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
     # browsers
@@ -55,7 +54,6 @@
     # programming
     pkg-config
     openssl
-    fontconfig
     cmake
     python3
     rustup
