@@ -104,6 +104,10 @@
         hostname = "*.clever-cloud.com";
         identityFile = "~/.ssh/id_rsa_yubikey.pub";
       };
+      edouardparis = {
+        hostname = "*.edouard.paris";
+        identityFile = "~/.ssh/id_rsa_yubikey.pub";
+      };
     };
   };
 
