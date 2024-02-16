@@ -126,7 +126,7 @@
     enable = true;
     shellAliases = {
       jrnl = "cd ~/Documents/journal && nix run github:edouardparis/jrnl";
-      nvim = "nix run github:edouardparis/neovim-flake";
+      oldvim = "nix run github:edouardparis/neovim-flake";
       gs = "git status";
       gco = "git checkout $(git for-each-ref refs/heads/ --format='%(refname:short)' | fzf)";
       gcb = "git checkout -b";

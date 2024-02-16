@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim.url = "github:edouardparis/nixvim-flake";
   };
 
   outputs = {
@@ -31,7 +32,7 @@
         ];
       };
       deskmini = nixpkgs.lib.nixosSystem {
-	system = "x86_64-linux"; 
+        system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/deskmini/configuration.nix

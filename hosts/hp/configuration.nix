@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -73,6 +74,7 @@
     udev
     gnupg
     yubikey-personalization
+    inputs.nixvim.packages."x86_64-linux".default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
