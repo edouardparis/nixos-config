@@ -25,7 +25,8 @@
     htop
     pavucontrol
     # fonts
-    dejavu_fonts
+    noto-fonts-emoji
+    # dejavu_fonts
     (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
     # browsers
     firefox

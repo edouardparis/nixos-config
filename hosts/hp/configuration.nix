@@ -49,6 +49,7 @@
   services.gvfs.enable = true;
   # services.pipewire.enable = true;
 
+  virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
 
@@ -56,7 +57,7 @@
   users.users.edouard = {
     isNormalUser = true;
     description = "Edouard";
-    extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers"];
+    extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers" "docker"];
     packages = with pkgs; [];
   };
 
@@ -75,6 +76,8 @@
     gnupg
     yubikey-personalization
     inputs.nixvim.packages."x86_64-linux".default
+    wayland
+    wayland-protocols
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
