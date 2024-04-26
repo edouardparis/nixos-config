@@ -45,19 +45,21 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
+  services.guix.enable = true;
   services.pcscd.enable = true;
   services.gvfs.enable = true;
   # services.pipewire.enable = true;
 
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edouard = {
     isNormalUser = true;
     description = "Edouard";
-    extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers" "docker"];
+    # extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers" "docker"];
+    extraGroups = ["networkmanager" "wheel" "audio" "video" "docker"];
     packages = with pkgs; [];
   };
 
@@ -115,6 +117,7 @@
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
       ];
+      config.common.default = "*";
     };
   };
 
