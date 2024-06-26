@@ -92,14 +92,17 @@
   };
 
   services.udev.packages = with pkgs; [
+    udev
     yubikey-personalization
     ledger-udev-rules
   ];
 
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403, TAG+="uaccess", TAG+="udev-acl", GROUP="wheel"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2c97", TAG+="uaccess", TAG+="udev-acl", GROUP="wheel"
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess", TAG+="udev-acl", GROUP="wheel"
     KERNEL=="hidraw*", ATTRS{idVendor}=="d13e", ATTRS{idProduct}=="cc10", GROUP="wheel", MODE="0666"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="2c97", GROUP="wheel", MODE="0666"
     KERNEL=="ttyUSB*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", MODE="0660", GROUP="wheel", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="jade%n"
     KERNEL=="ttyACM*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d4", MODE="0660", GROUP="wheel", TAG+="uaccess", TAG+="udev-acl", SYMLINK+="jade%n"
   '';

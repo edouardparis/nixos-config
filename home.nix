@@ -31,6 +31,8 @@
     # browsers
     firefox
     google-chrome
+    # chat
+    signal-desktop
 
     # for sway
     gnome.nautilus
@@ -47,10 +49,17 @@
     #
     tmux
 
+    #presentation
+    marp-cli
+    drawio
+    mupdf
+
     #build-essentials
     gcc
     glibc
     binutils
+
+    wireguard-tools
 
     # programming
     pkg-config
