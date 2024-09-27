@@ -11,6 +11,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    xdg-utils
     git
     vim
     wget
