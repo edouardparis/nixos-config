@@ -95,6 +95,12 @@
         vertical = 0;
         smartGaps = true;
       };
+      workspaceOutputAssign = [
+        {
+          output = "eDP-1";
+          workspace = "1";
+        }
+      ];
     };
     extraConfig = ''
       input "type:keyboard" {
