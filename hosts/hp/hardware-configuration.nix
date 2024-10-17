@@ -54,7 +54,7 @@
     pkgs.vulkan-extension-layer
   ];
   hardware.bluetooth.enable = true;
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  sound.enable = false;
+  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.package = pkgs.pulseaudioFull;
 }

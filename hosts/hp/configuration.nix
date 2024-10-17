@@ -48,7 +48,17 @@
   services.guix.enable = true;
   services.pcscd.enable = true;
   services.gvfs.enable = true;
-  # services.pipewire.enable = true;
+  services.dbus.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+    jack.enable = true;
+  };
 
   virtualisation.docker.enable = true;
   # virtualisation.virtualbox.host.enable = true;
@@ -60,13 +70,12 @@
     description = "Edouard";
     # extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers" "docker"];
     extraGroups = ["networkmanager" "wheel" "audio" "video" "docker"];
-    packages = with pkgs; [];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.config.pulseaudio = true;
+  # nixpkgs.config.pulseaudio = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -80,6 +89,8 @@
     inputs.nixvim.packages."x86_64-linux".default
     wayland
     wayland-protocols
+    xdg-desktop-portal
+    xdg-desktop-portal-wlr
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -116,6 +127,7 @@
   xdg = {
     portal = {
       enable = true;
+      wlr.enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk

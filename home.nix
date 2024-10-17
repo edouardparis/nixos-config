@@ -100,6 +100,10 @@
           output = "eDP-1";
           workspace = "1";
         }
+        {
+          output = "DP-3";
+          workspace = "2";
+        }
       ];
     };
     extraConfig = ''
