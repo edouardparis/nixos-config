@@ -88,7 +88,7 @@
     config = rec {
       menu = "wofi --show run";
       modifier = "Mod4";
-      terminal = "kitty";
+      terminal = "ghostty";
       window.titlebar = false;
       gaps = {
         horizontal = 0;
@@ -235,5 +235,8 @@
            }
       '';
     };
+  };
+  xdg.configFile = {
+    "ghostty/config".text = builtins.readFile ./ghostty.linux;
   };
 }
