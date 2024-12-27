@@ -2,7 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -61,15 +60,14 @@
   };
 
   virtualisation.docker.enable = true;
-  # virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edouard = {
     isNormalUser = true;
     description = "Edouard";
-    # extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers" "docker"];
-    extraGroups = ["networkmanager" "wheel" "audio" "video" "docker"];
+    extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers" "docker"];
   };
 
   # Allow unfree packages
@@ -87,6 +85,7 @@
     gnupg
     yubikey-personalization
     inputs.nixvim.packages."x86_64-linux".default
+    inputs.ghostty.packages."x86_64-linux".default
     wayland
     wayland-protocols
     xdg-desktop-portal

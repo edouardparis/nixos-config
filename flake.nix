@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim.url = "github:edouardparis/nixvim-flake";
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   outputs = {

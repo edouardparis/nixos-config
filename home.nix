@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  users,
   ...
 }: {
   home.stateVersion = "23.05";
@@ -34,6 +32,7 @@
     google-chrome
     # chat
     signal-desktop
+    vlc
 
     # for sway
     gnome.nautilus
@@ -63,6 +62,7 @@
     wireguard-tools
 
     # programming
+    gnumake
     pkg-config
     openssl
     cmake
