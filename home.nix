@@ -15,6 +15,7 @@
     wget
     curl
     pass
+    yubikey-manager
     # utils
     jq
     ripgrep
@@ -24,6 +25,7 @@
     htop
     pavucontrol
     # fonts
+    unifont
     noto-fonts-emoji
     # dejavu_fonts
     (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
@@ -68,6 +70,7 @@
     cmake
     python3
     rustup
+    go
   ];
 
   home.sessionVariables = {
@@ -156,7 +159,7 @@
       passp = "PASSWORD_STORE_DIR=~/.password-personal pass";
     };
     sessionVariables = {
-      PATH = "$HOME/.cargo/bin:$PATH";
+      PATH = "$HOME/go/bin:$HOME/.cargo/bin:$PATH";
     };
     initExtra = ''
       . /etc/profiles/per-user/edouard/share/bash-completion/completions/pass
