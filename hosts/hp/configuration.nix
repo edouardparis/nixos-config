@@ -60,14 +60,12 @@
   };
 
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edouard = {
     isNormalUser = true;
     description = "Edouard";
-    extraGroups = ["networkmanager" "wheel" "audio" "video" "vboxusers" "docker"];
+    extraGroups = ["networkmanager" "wheel" "audio" "video" "docker"];
   };
 
   # Allow unfree packages

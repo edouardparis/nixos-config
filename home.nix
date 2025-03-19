@@ -1,6 +1,6 @@
 {
-  pkgs,
-  ...
+pkgs,
+...
 }: {
   home.stateVersion = "23.05";
   home.username = "edouard";
@@ -30,7 +30,6 @@
     # dejavu_fonts
     (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
     # browsers
-    firefox
     google-chrome
     # chat
     signal-desktop
@@ -50,6 +49,7 @@
 
     #
     tmux
+    screenfetch
 
     #presentation
     marp-cli
@@ -71,19 +71,12 @@
     python3
     rustup
     go
+
+    wayland
+    qt5.qtwayland
+    qt5.qtbase
+    qemu
   ];
-
-  home.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = "1";
-    MOZ_USE_XINPUT2 = "1";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_CURRENT_DESKTOP = "sway";
-    SDL_VIDEODRIVER = "wayland";
-
-    # needs qt5.qtwayland in systemPackages
-    QT_QPA_PLATFORM = "wayland";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-  };
 
   wayland.windowManager.sway = {
     enable = true;
@@ -146,6 +139,21 @@
     '';
   };
 
+  home.sessionVariables = {
+    PATH = "$HOME/go/bin:$HOME/.cargo/bin:$PATH";
+    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_USE_XINPUT2 = "1";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "sway";
+    SDL_VIDEODRIVER = "wayland";
+
+    # needs qt5.qtwayland in systemPackages
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_PLUGIN_PATH="${pkgs.qt5.qtbase.bin}/${pkgs.qt5.qtbase.qtPluginPrefix}";
+    QT_QPA_PLATFORM_PLUGIN_PATH="${pkgs.qt5.qtbase.bin}/lib/qt-${pkgs.qt5.qtbase.version}/plugins";
+  };
+
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -158,10 +166,9 @@
       gacam = "git add . & git commit -a -m";
       passp = "PASSWORD_STORE_DIR=~/.password-personal pass";
     };
-    sessionVariables = {
-      PATH = "$HOME/go/bin:$HOME/.cargo/bin:$PATH";
-    };
     initExtra = ''
+      [[ -f ~/.profile ]] && . ~/.profile
+
       . /etc/profiles/per-user/edouard/share/bash-completion/completions/pass
       _passp() {
         # trailing / is required for the password-store dir.
