@@ -80,10 +80,12 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     udev
+    age
     gnupg
     yubikey-personalization
     inputs.nixvim.packages."x86_64-linux".default
     inputs.ghostty.packages."x86_64-linux".default
+    inputs.agenix.packages."x86_64-linux".default
     wayland
     wayland-protocols
     xdg-desktop-portal

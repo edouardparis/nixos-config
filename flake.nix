@@ -9,6 +9,7 @@
     };
     nixvim.url = "github:edouardparis/nixvim-flake";
     ghostty.url = "github:ghostty-org/ghostty";
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs = {
