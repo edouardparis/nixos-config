@@ -105,6 +105,7 @@
     udev
     yubikey-personalization
     ledger-udev-rules
+    moolticute.udev
   ];
 
   services.udev.extraRules = ''

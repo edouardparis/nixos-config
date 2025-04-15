@@ -9,6 +9,7 @@ pkgs,
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    iamb
     xdg-utils
     git
     vim
@@ -36,7 +37,7 @@ pkgs,
     vlc
 
     # for sway
-    gnome.nautilus
+    nautilus
     kitty
     swaylock
     swayidle
@@ -140,6 +141,7 @@ pkgs,
   };
 
   home.sessionVariables = {
+    EDITOR = "vim";
     PATH = "$HOME/go/bin:$HOME/.cargo/bin:$PATH";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_USE_XINPUT2 = "1";
