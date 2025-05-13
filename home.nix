@@ -9,7 +9,6 @@ pkgs,
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    iamb
     xdg-utils
     git
     vim
