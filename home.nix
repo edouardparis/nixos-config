@@ -11,6 +11,7 @@ pkgs,
   home.packages = with pkgs; [
     xdg-utils
     git
+    jujutsu
     vim
     wget
     curl
@@ -65,6 +66,7 @@ pkgs,
 
     # programming
     gnumake
+    vscode
     pkg-config
     openssl
     cmake
