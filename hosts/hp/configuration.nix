@@ -48,6 +48,7 @@
   services.pcscd.enable = true;
   services.gvfs.enable = true;
   services.dbus.enable = true;
+  services.tailscale.enable = true;
 
   services.pipewire = {
     enable = true;
