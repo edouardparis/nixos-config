@@ -28,8 +28,7 @@ pkgs,
     # fonts
     unifont
     noto-fonts-emoji
-    # dejavu_fonts
-    (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
+    nerd-fonts.fira-code
     # browsers
     google-chrome
     # chat
