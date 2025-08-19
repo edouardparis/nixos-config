@@ -72,6 +72,7 @@ pkgs,
     python3
     rustup
     go
+    nodejs
 
     wayland
     qt5.qtwayland
@@ -126,6 +127,10 @@ pkgs,
         hostname = "*.edouard.paris";
         identityFile = "~/.ssh/id_rsa_yubikey.pub";
       };
+      mac-mini-de-edouard = {
+        hostname = "mac-mini-de-edouard";
+        identityFile = "~/.ssh/id_rsa_yubikey.pub";
+      };
     };
   };
 
@@ -142,7 +147,7 @@ pkgs,
 
   home.sessionVariables = {
     EDITOR = "vim";
-    PATH = "$HOME/go/bin:$HOME/.cargo/bin:$PATH";
+    PATH = "$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$PATH";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_USE_XINPUT2 = "1";
     XDG_SESSION_TYPE = "wayland";
@@ -209,6 +214,11 @@ pkgs,
     };
     extraConfig = {
       core.editor = "vim";
+      url = {
+        "ssh://git@github.com" = {
+          insteadOf = "git://github.com";
+        };
+      };
     };
   };
 
