@@ -46,11 +46,10 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = [
-    pkgs.mesa.drivers
+    pkgs.mesa
     pkgs.vulkan-loader
     pkgs.vulkan-validation-layers
     pkgs.vulkan-extension-layer
   ];
   hardware.bluetooth.enable = true;
-  hardware.pulseaudio.enable = false;
 }

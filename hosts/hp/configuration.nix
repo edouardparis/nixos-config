@@ -51,6 +51,7 @@
   services.tailscale.enable = true;
   services.resolved.enable = true;
 
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa = {

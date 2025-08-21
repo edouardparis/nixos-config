@@ -231,7 +231,7 @@ pkgs,
       isDefault = true;
       search = {
         force = true;
-        default = "DuckDuckGo";
+        default = "ddg";
       };
       settings = {
         "browser.tabs.warnOnCloseOtherTabs" = false;
