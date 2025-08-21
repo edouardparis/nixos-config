@@ -17,6 +17,7 @@ pkgs,
     curl
     pass
     yubikey-manager
+    obsidian
     # utils
     jq
     ripgrep
@@ -78,6 +79,7 @@ pkgs,
     qt5.qtwayland
     qt5.qtbase
     qemu
+    appimage-run
   ];
 
   wayland.windowManager.sway = {
@@ -260,5 +262,43 @@ pkgs,
   };
   xdg.configFile = {
     "ghostty/config".text = builtins.readFile ./ghostty.linux;
+  };
+
+  services.syncthing = {
+    enable = true;
+    overrideDevices = true;
+    overrideFolders = true;
+    # Disable public discovery methods
+    settings = {
+      options = {
+        globalAnnounceEnabled = false;    # No global discovery servers
+        localAnnounceEnabled = false;     # No local network broadcasts
+        relaysEnabled = false;            # No public relays
+        natEnabled = false;               # No NAT traversal attempts
+      };
+
+      # Configure devices with Tailscale IPs
+      devices = {
+        "laptop" = {
+          id = "2XLACWS-J2ZSRET-A3WCJD4-3MSWYSD-E2PAUFZ-2VXV6HP-UBK67JS-RYDIDAR";
+          addresses = [ "tcp://nixos:22000" ];
+        };
+        "mobile" = {
+          id = "GLCS4TU-IGCW7BW-DHWUVSQ-SYYGBME-IOZM47X-YWS6QWY-RG2UEDX-I6XITAT";
+          addresses = [ "tcp://samsung-sm-a536b:22000" ];
+        };
+        "mac" = {
+          id = "TFHY7JE-5C7NM5Y-DUMFF5L-YBLL4ED-SS2XGV6-CLLOJ2S-HDKDFKH-EJZ6GQF";
+          addresses = [ "tcp://mac-mini-de-edouard:22000" ];
+        };
+      };
+
+      folders = {
+        "documents" = {
+          path = "/home/edouard/Documents/notes";
+          devices = ["laptop" "mobile" "mac"];
+        };
+      };
+    };
   };
 }
