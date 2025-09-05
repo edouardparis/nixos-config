@@ -235,6 +235,9 @@ pkgs,
       };
       settings = {
         "browser.tabs.warnOnCloseOtherTabs" = false;
+        "widget.wayland.use-native-cursors" = true;
+        "gfx.webrender.all" = true;
+        "signon.rememberSignons" = false;
       };
       userChrome = ''
            #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
