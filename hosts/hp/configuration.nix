@@ -92,8 +92,6 @@
     inputs.agenix.packages."x86_64-linux".default
     wayland
     wayland-protocols
-    xdg-desktop-portal
-    xdg-desktop-portal-wlr
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -133,7 +131,6 @@
       enable = true;
       wlr.enable = true;
       extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
       ];
       config.common.default = "*";
