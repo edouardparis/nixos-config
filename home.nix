@@ -221,7 +221,16 @@ pkgs,
           insteadOf = "git://github.com";
         };
       };
+      ssh = {
+        allowedSignersFile = "~/.ssh/allowed_signers";
+      };
     };
+  };
+
+  home.file.".ssh/allowed_signers" = {
+    text = ''
+     m@edouard.paris ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC6wtgs9ZSVxKydPNWNf6W99hZJXcUgY3i2j8IN+GirvO/dkCuHFZgTsDj5MkVrRQryXZKnKrKyg6E01uQykFNNloAtN9iLpZJ/Pd0A4aNxXu7k0ql4ipFOYBq5WsGZtSjAfQzuw3AUXR1DrzcupOBDVhvRUZdhrQvZYOad4sIdb1YP31FJ+OtqgGiZl0kUc+DB90DotWz0w80fWsjrbnyvkw7IvT9Bb3nOiWm4koYOoWQjwogmDUyvDpU5RXqwYC5Bs8VJSnZhIb8kp7tXxLH0COH9BExXz3TWKK2MpbmgyaFmnTyOQFTx0J3fEe6jLlCcGX6VxTeRE64UtNQVzxyEJvHp/RPYO5cgaEop2K2owfY2slrixHshRiPc4JyorKLcmsJUW+0jHIY8xovABJl/CxdoGuXZ/ATRzX8v/wgVSbkZiBjk6km7UoV+YxdjWW660SDGHPQlJ/DZdXTRJjf0Q572j2VJzdu9OTR97IwhSVhLkjgUtIXHEnujENWF7mvvPpVtaKOQmpWhiqHLWjD61yXxrwQSdUdvPwCIxD55GBfnO+hcPqzQIr62F2m+eJCRpDOW6uAPCjmgnBKnQshUUgtXAbHIcJuxPObE5GwxZtv45ZEdfMwpO7VxBURoFfYwtgzoRgRfUnmVoQN7qmTW4AF/pvvLhU2tU5g7dFl5Tw==
+    '';
   };
 
   programs.firefox = {
