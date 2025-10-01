@@ -87,9 +87,6 @@
     age
     gnupg
     yubikey-personalization
-    inputs.nixvim.packages."x86_64-linux".default
-    inputs.ghostty.packages."x86_64-linux".default
-    inputs.agenix.packages."x86_64-linux".default
     wayland
     wayland-protocols
   ];

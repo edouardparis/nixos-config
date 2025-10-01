@@ -10,6 +10,10 @@
     nixvim.url = "github:edouardparis/nixvim-flake";
     ghostty.url = "github:ghostty-org/ghostty";
     agenix.url = "github:ryantm/agenix";
+    bubblewrap-claude = {
+        url = "github:edouardparis/bubblewrap-claude";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -29,6 +33,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs outputs;};
             home-manager.users.edouard = import ./home.nix;
           }
         ];
@@ -42,6 +47,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs outputs;};
             home-manager.users.edouard = import ./home.nix;
           }
         ];

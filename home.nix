@@ -1,5 +1,6 @@
 {
 pkgs,
+inputs,
 ...
 }: {
   home.stateVersion = "23.05";
@@ -9,6 +10,11 @@ pkgs,
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    inputs.bubblewrap-claude.packages.${pkgs.system}.claude-sandbox
+    inputs.nixvim.packages."x86_64-linux".default
+    inputs.ghostty.packages."x86_64-linux".default
+    inputs.agenix.packages."x86_64-linux".default
+
     xdg-utils
     git
     jujutsu
