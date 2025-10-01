@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759272495,
-        "narHash": "sha256-DppPw9mpvunj9H8c6KsTHQ6R+zOlltIUGCuCL0A0Z7U=",
+        "lastModified": 1759334148,
+        "narHash": "sha256-IoQRgZCsk1+pWdwszULDanOdOoWsVrKr0Mq4MFxwpik=",
         "owner": "edouardparis",
         "repo": "bubblewrap-claude",
-        "rev": "880e7f571b893e43112cd8473226994f273fb980",
+        "rev": "aa222e4947bb1842dc1e61f7cddc1b87724222ac",
         "type": "github"
       },
       "original": {
