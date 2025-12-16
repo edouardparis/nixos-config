@@ -89,6 +89,9 @@
     yubikey-personalization
     wayland
     wayland-protocols
+    mesa
+    libva
+    vulkan-loader
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

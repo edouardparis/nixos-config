@@ -12,9 +12,10 @@ inputs,
   home.packages = with pkgs; [
     inputs.bubblewrap-claude.packages.${pkgs.system}.claude-sandbox
     inputs.nixvim.packages."x86_64-linux".default
-    inputs.ghostty.packages."x86_64-linux".default
     inputs.agenix.packages."x86_64-linux".default
 
+    alacritty
+    ghostty
     xdg-utils
     git
     jujutsu
@@ -34,7 +35,7 @@ inputs,
     pavucontrol
     # fonts
     unifont
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     nerd-fonts.fira-code
     # browsers
     google-chrome
@@ -60,7 +61,7 @@ inputs,
 
     #presentation
     marp-cli
-    drawio
+    # drawio
     mupdf
 
     #build-essentials
@@ -82,6 +83,7 @@ inputs,
     nodejs
 
     wayland
+    egl-wayland
     qt5.qtwayland
     qt5.qtbase
     qemu
@@ -91,10 +93,10 @@ inputs,
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    config = rec {
+    config = {
       menu = "wofi --show run";
       modifier = "Mod4";
-      terminal = "ghostty";
+      terminal = "alacritty";
       window.titlebar = false;
       gaps = {
         horizontal = 0;
@@ -155,7 +157,7 @@ inputs,
 
   home.sessionVariables = {
     EDITOR = "vim";
-    PATH = "$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$PATH";
+    PATH = "$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/.config/guix/current/bin:$PATH";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_USE_XINPUT2 = "1";
     XDG_SESSION_TYPE = "wayland";
@@ -182,6 +184,8 @@ inputs,
       passp = "PASSWORD_STORE_DIR=~/.password-personal pass";
     };
     initExtra = ''
+      export PATH="$HOME/.config/guix/current/bin:$PATH"
+
       [[ -f ~/.profile ]] && . ~/.profile
 
       . /etc/profiles/per-user/edouard/share/bash-completion/completions/pass
@@ -215,12 +219,13 @@ inputs,
 
   programs.git = {
     enable = true;
-    userName = "edouardparis";
-    userEmail = "m@edouard.paris";
-    signing = {
-      key = "5B63F3B97699C7EEF3B040B19B7F629A53E77B83";
-    };
-    extraConfig = {
+    settings = {
+      user.name = "edouardparis";
+      user.email = "m@edouard.paris";
+      signing = {
+        key = "5B63F3B97699C7EEF3B040B19B7F629A53E77B83";
+      };
+      user.signingkey = "5B63F3B97699C7EEF3B040B19B7F629A53E77B83";
       core.editor = "vim";
       url = {
         "ssh://git@github.com" = {

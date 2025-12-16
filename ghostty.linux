@@ -1,6 +1,6 @@
 font-size = 12
 theme = iTerm2 Default
-font-family = "FiraCode Nerd Font Mono"
+font-family = "monospace"
 window-decoration = false
 macos-non-native-fullscreen = visible-menu
 macos-option-as-alt = left
