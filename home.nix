@@ -9,8 +9,13 @@ inputs,
   # let Home manager manage itself
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [
-    inputs.bubblewrap-claude.packages.${pkgs.system}.claude-sandbox
+  home.packages =  let
+    claudeFlake = inputs.bubblewrap-claude.lib.makeClaudeSandbox {
+      apiUrl = "https://openrouter.ai/api";
+      apiKeyCommand = "${pkgs.pass}/bin/pass show openrouter/api-key";
+    };
+  in with pkgs; [
+    claudeFlake.packages.${pkgs.system}.claude-sandbox
     inputs.nixvim.packages."x86_64-linux".default
     inputs.agenix.packages."x86_64-linux".default
 
