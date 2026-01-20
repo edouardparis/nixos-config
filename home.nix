@@ -10,12 +10,65 @@ inputs,
   programs.home-manager.enable = true;
 
   home.packages =  let
-    claudeFlake = inputs.bubblewrap-claude.lib.makeClaudeSandbox {
-      apiUrl = "https://openrouter.ai/api";
-      apiKeyCommand = "${pkgs.pass}/bin/pass show openrouter/api-key";
+    bwLib = inputs.bubblewrap-claude.lib.${pkgs.system};
+
+    # Full development profile with Nix, Go, Rust, Python, JavaScript
+    baseSandbox = bwLib.mkSandbox {
+      name = "claude-sandbox";
+      packages = bwLib.base.packages
+        ++ bwLib.profiles.nix.packages
+        ++ bwLib.profiles.go.packages
+        ++ bwLib.profiles.rust.packages
+        ++ bwLib.profiles.python.packages
+        ++ bwLib.profiles.js.packages
+        ++ [ pkgs.gcc pkgs.binutils pkgs.pkg-config ];
+      env = bwLib.base.env // bwLib.profiles.go.env // bwLib.profiles.rust.env // bwLib.profiles.python.env // bwLib.profiles.js.env;
+      args = bwLib.base.args
+        ++ bwLib.profiles.go.args
+        ++ bwLib.profiles.rust.args
+        ++ bwLib.profiles.python.args
+        ++ bwLib.profiles.js.args;
+      preStartHooks = bwLib.profiles.nix.preStartHooks;
+      customPrompt = ''
+        IMPORTANT SANDBOX LIMITATIONS:
+        - Package manager caches are READ-ONLY (cargo, npm, pip, go mod, etc.)
+        - You CANNOT download new dependencies
+        - Only pre-cached dependencies from the host system are available
+        - When running tests or builds, use --offline or --frozen flags where applicable:
+          * Rust: Use 'cargo test --frozen' or 'cargo build --offline'
+          * Go: Dependencies must already be in go.mod
+          * Python: Use '--no-deps' or ensure dependencies are pre-installed
+          * npm: Use 'npm ci --offline' or 'npm test' (no install)
+        - If dependencies are missing, inform the user they need to install them outside the sandbox first
+      '';
+      allowList = [
+        # Anthropic
+        "claude.com"
+        "platform.claude.com"
+        "api.claude.com"
+        "api.anthropic.com"
+        # GitHub
+        "github.com"
+        "api.github.com"
+        "raw.githubusercontent.com"
+        "codeload.github.com"
+        # npm
+        "registry.npmjs.org"
+        "npmjs.com"
+        "npmjs.org"
+        # Python/PyPI
+        "pypi.org"
+        "files.pythonhosted.org"
+        "pypi.python.org"
+        # Rust crates
+        "crates.io"
+        "static.crates.io"
+        "index.crates.io"
+        "crates-io.s3-us-west-1.amazonaws.com"
+      ];
     };
   in with pkgs; [
-    claudeFlake.packages.${pkgs.system}.claude-sandbox
+    baseSandbox
     inputs.nixvim.packages."x86_64-linux".default
     inputs.agenix.packages."x86_64-linux".default
 

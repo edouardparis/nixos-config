@@ -10,7 +10,7 @@
     nixvim.url = "github:edouardparis/nixvim-flake";
     agenix.url = "github:ryantm/agenix";
     bubblewrap-claude = {
-        url = "github:edouardparis/bubblewrap-claude";
+        url = "github:matgawin/bubblewrap-claude";
         inputs.nixpkgs.follows = "nixpkgs";
     };
   };
