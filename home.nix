@@ -22,7 +22,9 @@ inputs,
         ++ bwLib.profiles.python.packages
         ++ bwLib.profiles.js.packages
         ++ [ pkgs.gcc pkgs.binutils pkgs.pkg-config ];
-      env = bwLib.base.env // bwLib.profiles.go.env // bwLib.profiles.rust.env // bwLib.profiles.python.env // bwLib.profiles.js.env;
+      env = bwLib.base.env // bwLib.profiles.go.env // bwLib.profiles.rust.env // bwLib.profiles.python.env // bwLib.profiles.js.env // {
+        NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+      };
       args = bwLib.base.args
         ++ bwLib.profiles.go.args
         ++ bwLib.profiles.rust.args
