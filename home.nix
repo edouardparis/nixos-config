@@ -384,16 +384,12 @@ inputs,
           id = "GLCS4TU-IGCW7BW-DHWUVSQ-SYYGBME-IOZM47X-YWS6QWY-RG2UEDX-I6XITAT";
           addresses = [ "tcp://samsung-sm-a536b:22000" ];
         };
-        "mac" = {
-          id = "TFHY7JE-5C7NM5Y-DUMFF5L-YBLL4ED-SS2XGV6-CLLOJ2S-HDKDFKH-EJZ6GQF";
-          addresses = [ "tcp://mac-mini-de-edouard:22000" ];
-        };
       };
 
       folders = {
         "documents" = {
           path = "/home/edouard/Documents/notes";
-          devices = ["laptop" "mobile" "mac"];
+          devices = ["laptop" "mobile"];
         };
       };
     };
