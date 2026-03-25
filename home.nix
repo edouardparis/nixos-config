@@ -154,7 +154,7 @@ inputs,
     enable = true;
     wrapperFeatures.gtk = true;
     config = {
-      menu = "wofi --show run";
+      menu = "vicinae toggle";
       modifier = "Mod4";
       terminal = "alacritty";
       window.titlebar = false;
@@ -204,6 +204,16 @@ inputs,
     };
   };
 
+  programs.vicinae = {
+    enable = true;
+    useLayerShell = true;
+    systemd = {
+      enable = true;
+      autoStart = true;
+      target = "sway-session.target";
+    };
+  };
+
   programs.kitty = {
     enable = true;
     shellIntegration.enableBashIntegration = true;
@@ -217,7 +227,7 @@ inputs,
 
   home.sessionVariables = {
     EDITOR = "vim";
-    PATH = "$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/.config/guix/current/bin:$PATH";
+    PATH = "$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/.config/guix/current/bin:/etc/profiles/per-user/edouard/bin:$HOME/.nix-profile/bin:$PATH";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_USE_XINPUT2 = "1";
     XDG_SESSION_TYPE = "wayland";
@@ -230,6 +240,10 @@ inputs,
     QT_PLUGIN_PATH="${pkgs.qt5.qtbase.bin}/${pkgs.qt5.qtbase.qtPluginPrefix}";
     QT_QPA_PLATFORM_PLUGIN_PATH="${pkgs.qt5.qtbase.bin}/lib/qt-${pkgs.qt5.qtbase.version}/plugins";
   };
+
+  systemd.user.services.vicinae.Service.Environment = [
+    "PATH=/etc/profiles/per-user/edouard/bin"
+  ];
 
   programs.bash = {
     enable = true;
