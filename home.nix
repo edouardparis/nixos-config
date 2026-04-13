@@ -36,11 +36,8 @@ inputs,
         - Package manager caches are READ-ONLY (cargo, npm, pip, go mod, etc.)
         - You CANNOT download new dependencies
         - Only pre-cached dependencies from the host system are available
-        - When running tests or builds, use --offline or --frozen flags where applicable:
-          * Rust: Use 'cargo test --frozen' or 'cargo build --offline'
-          * Go: Dependencies must already be in go.mod
-          * Python: Use '--no-deps' or ensure dependencies are pre-installed
-          * npm: Use 'npm ci --offline' or 'npm test' (no install)
+        - When running tests or builds try to use the existing flake.nix
+        - Do not forget to run linter after changing code base
         - If dependencies are missing, inform the user they need to install them outside the sandbox first
       '';
       allowList = [
@@ -54,6 +51,8 @@ inputs,
         "api.github.com"
         "raw.githubusercontent.com"
         "codeload.github.com"
+        # GitHub
+        "tangled.org"
         # npm
         "registry.npmjs.org"
         "npmjs.com"
