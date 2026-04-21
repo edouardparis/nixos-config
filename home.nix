@@ -78,6 +78,7 @@ inputs,
     xdg-utils
     git
     jujutsu
+    jj-starship
     vim
     wget
     curl
@@ -286,7 +287,15 @@ inputs,
     '';
   };
 
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    settings = {
+      custom.jj = {
+        command = "jj-starship";
+        when = "jj root 2>/dev/null";
+      };
+    };
+  };
   programs.zoxide.enable = true;
   programs.fzf.enable = true;
 

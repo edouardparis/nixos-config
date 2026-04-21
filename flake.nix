@@ -13,12 +13,14 @@
         url = "github:matgawin/bubblewrap-claude";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    jj-starship.url = "github:dmmulroy/jj-starship";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    jj-starship,
     ...
   } @ inputs: let
      inherit (self) outputs;
@@ -27,6 +29,7 @@
       hp = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          {nixpkgs.overlays = [ jj-starship.overlays.default ];}
           ./hosts/hp/configuration.nix
           home-manager.nixosModules.home-manager
           {
